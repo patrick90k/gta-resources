@@ -151,23 +151,36 @@ document.getElementById('new-day-button').addEventListener('click', () => {
     saveState();
     render();
 });
-document.getElementById('close-button').addEventListener('click', closeApp);
+document.getElementById('save-file-button').addEventListener('click', downloadBackup);
+document.getElementById('import-file').addEventListener('change', importBackup);
 
-document.addEventListener('keyup', (event) => {
-    if (event.key === 'Escape') closeApp();
-});
+function downloadBackup() {
+    const date = state.date || new Date().toISOString().slice(0, 10);
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `busdienst-${date}.json`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
 
-window.addEventListener('message', (event) => {
-    if (event.data.type === 'open') app.classList.add('is-open');
-    if (event.data.type === 'close') app.classList.remove('is-open');
-});
+function importBackup(event) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-function closeApp() {
-    app.classList.remove('is-open');
-    if (window.invokeNative && typeof GetParentResourceName === 'function') {
-        fetch(`https://${GetParentResourceName()}/close`, { method: 'POST', body: '{}' }).catch(() => undefined);
-    }
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        try {
+            Object.assign(state, defaultState(), JSON.parse(reader.result));
+            saveState();
+            render();
+        } catch (error) {
+            alert('Die Sicherungsdatei konnte nicht gelesen werden.');
+        } finally {
+            event.target.value = '';
+        }
+    });
+    reader.readAsText(file);
 }
 
 render();
-if (!window.invokeNative) app.classList.add('is-open');

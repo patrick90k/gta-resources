@@ -1,12 +1,12 @@
 # Busfahrer Dienst-App
 
-FiveM-NUI zur täglichen Erfassung eines Busfahrer-Dienstes.
+Private, eigenständige Web-App zur täglichen Erfassung eines Busfahrer-Dienstes. Die App ist **keine GTA-/FiveM-Resource** und kann lokal im Browser genutzt werden.
 
 ## Nutzung
 
-1. Resource im Server starten, zum Beispiel mit `ensure bus-duty-app`.
-2. Im Spiel `F7` drücken oder `/busdienst` eingeben.
-3. Dienstdaten, Touren, Pausen, Leerfahrten, Fahrzeugpflege und Abfahrtkontrolle ausfüllen.
-4. `Als PDF exportieren` anklicken und im Druckdialog `Als PDF speichern` auswählen.
+1. `bus-duty-app/index.html` im Browser öffnen.
+2. Dienstdaten, Touren, Pausen, Leerfahrten, Fahrzeugpflege und Abfahrtkontrolle ausfüllen.
+3. `Als PDF exportieren` anklicken und im Druckdialog `Als PDF speichern` auswählen.
+4. Optional `Sicherung speichern` nutzen, um den Dienst als JSON-Datei abzulegen, oder `Sicherung laden`, um eine gespeicherte Datei wieder zu öffnen.
 
-Alle Eingaben werden im lokalen NUI-Speicher automatisch gesichert und können über `Neuer Dienst` zurückgesetzt werden.
+Alle Eingaben werden zusätzlich automatisch im lokalen Browser-Speicher gesichert und können über `Neuer Dienst` zurückgesetzt werden.

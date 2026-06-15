@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busfahrer Dienst-App</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#2563eb">
 </head>
 <body>
-    <main class="app-shell" id="app">
+    <main class="app-shell is-open" id="app">
         <header class="hero no-print">
             <div>
                 <p class="eyebrow">Täglicher Dienstnachweis</p>
@@ -17,7 +18,9 @@
             <div class="hero-actions">
                 <button type="button" id="new-day-button" class="secondary">Neuer Dienst</button>
                 <button type="button" id="print-button">Als PDF exportieren</button>
-                <button type="button" id="close-button" class="ghost">Schließen</button>
+                <button type="button" id="save-file-button" class="ghost">Sicherung speichern</button>
+                <label class="import-button ghost" for="import-file">Sicherung laden</label>
+                <input class="visually-hidden" type="file" id="import-file" accept="application/json">
             </div>
         </header>
 
