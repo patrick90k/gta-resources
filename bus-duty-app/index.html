@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busfahrer Dienst-App</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+    <main class="app-shell is-open" id="app">
+        <header class="hero no-print">
+            <div>
+                <p class="eyebrow">Täglicher Dienstnachweis</p>
+                <h1>Busfahrer Dienst-App</h1>
+                <p>Erfasse Touren, Pausen, Leerfahrten, Fahrzeugpflege und Abfahrtkontrolle mit frei setzbaren Zeiten.</p>
+            </div>
+            <div class="hero-actions">
+                <button type="button" id="new-day-button" class="secondary">Neuer Dienst</button>
+                <button type="button" id="print-button">Als PDF exportieren</button>
+                <button type="button" id="save-file-button" class="ghost">Sicherung speichern</button>
+                <label class="import-button ghost" for="import-file">Sicherung laden</label>
+                <input class="visually-hidden" type="file" id="import-file" accept="application/json">
+            </div>
+        </header>
+
+        <form id="duty-form" autocomplete="off">
+            <section class="card">
+                <div class="section-heading">
+                    <h2>Dienstdaten</h2>
+                    <span class="badge">Automatisch gespeichert</span>
+                </div>
+                <div class="grid three">
+                    <label>Datum
+                        <input type="date" name="date" required>
+                    </label>
+                    <label>Dienstnummer / Linie
+                        <input type="text" name="serviceNumber" placeholder="z. B. D-421 / Linie 16">
+                    </label>
+                    <label>Fahrer
+                        <input type="text" name="driver" placeholder="Name">
+                    </label>
+                    <label>Fahrzeug / Busnummer
+                        <input type="text" name="vehicle" placeholder="z. B. Bus 1204">
+                    </label>
+                    <label>Dienstbeginn
+                        <input type="time" name="shiftStart">
+                    </label>
+                    <label>Dienstende
+                        <input type="time" name="shiftEnd">
+                    </label>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Touren</h2>
+                        <p>Jede Tour kann mit Von-Bis-Zeiten und Strecke eingepflegt werden.</p>
+                    </div>
+                    <button type="button" class="secondary add-row" data-type="tours">Tour hinzufügen</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Von</th><th>Bis</th><th>Start</th><th>Ziel</th><th>Linie / Kurs</th><th>Notiz</th><th class="no-print">Aktion</th></tr>
+                        </thead>
+                        <tbody id="tours-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="card split">
+                <div>
+                    <div class="section-heading compact">
+                        <h2>Pausen</h2>
+                        <button type="button" class="secondary add-row" data-type="breaks">Pause hinzufügen</button>
+                    </div>
+                    <div class="stack" id="breaks-body"></div>
+                </div>
+                <div>
+                    <div class="section-heading compact">
+                        <h2>Leerfahrten</h2>
+                        <button type="button" class="secondary add-row" data-type="deadheads">Leerfahrt hinzufügen</button>
+                    </div>
+                    <div class="stack" id="deadheads-body"></div>
+                </div>
+            </section>
+
+            <section class="card split">
+                <div>
+                    <div class="section-heading compact">
+                        <h2>Fahrzeugpflege</h2>
+                        <button type="button" class="secondary add-row" data-type="maintenance">Eintrag hinzufügen</button>
+                    </div>
+                    <div class="stack" id="maintenance-body"></div>
+                </div>
+                <div>
+                    <div class="section-heading compact">
+                        <h2>Abfahrtkontrolle</h2>
+                        <button type="button" class="secondary add-row" data-type="checks">Prüfpunkt hinzufügen</button>
+                    </div>
+                    <div class="stack" id="checks-body"></div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Bemerkungen</h2>
+                <textarea name="notes" rows="4" placeholder="Besondere Vorkommnisse, Schäden, Verspätungen ..."></textarea>
+            </section>
+        </form>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
